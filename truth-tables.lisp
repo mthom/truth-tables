@@ -3,12 +3,12 @@
 	(q (gensym)))   
     `(lambda (,@symbols)
        (declare (ignorable ,@symbols))
-       (macrolet ((-> (,p ,q)
-		    `(or (not ,,p) ,,q))
-		  (xor (,p ,q)
-		    `(or (and ,,p (not ,,q)) (and (not ,,p) ,,q)))
-		  (<-> (,p ,q)
-		    `(and (-> ,,p ,,q) (-> ,,q ,,p))))
+       (labels ((-> (,p ,q)
+		  (or (not ,p) ,q))
+		(xor (,p ,q)
+		  (or (and ,p (not ,q)) (and (not ,p) ,q)))
+		(<-> (,p ,q)
+		  (and (-> ,p ,q) (-> ,q ,p))))
 	 ,prop))))
 
 (defun make-solvers (symbols props)
@@ -51,7 +51,7 @@
        (format nil "~v,'0B" size value)))
 
 (defun print-title (stream symbols subforms)
-  (format stream "~{ ~A ~^|~}~%" (append symbols subforms)))
+  (format stream "|~{ ~A |~}~%" (append symbols subforms)))
 
 (defun print-row (stream assignments solutions subforms)
   (flet ((get-width (form)
@@ -60,8 +60,8 @@
 				(list (1- (get-width form)) solution))
 			      solutions
 			      subforms)))
-      (format stream "~{ ~:[F~;T~] ~^|~}"   assignments)
-      (format stream "|~{ ~{~V,@T~:[F~;T~]~} ~^|~}~%" width-data))))
+      (format stream "|~{ ~:[F~;T~] |~}"   assignments)
+      (format stream "~{ ~{~V,@T~:[F~;T~]~} |~}~%" width-data))))
 
 (defun print-truth-table (prop &optional (stream t))
   (multiple-value-bind (symbols subforms)
