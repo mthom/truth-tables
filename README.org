@@ -29,3 +29,6 @@ anyone. Hopefully none of my Discrete Mathematics students discover
 this, but fortunately Lisp is secret alien technology none of them
 understand.
 
+I should acknowledge [[http://lisptips.com][Common Lisp Tips]], from which I took several
+helpful ideas and techniques.
+
