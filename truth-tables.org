@@ -1,0 +1,30 @@
+* truth-tables *
+
+truth-tables is used to produce truth tables from logical
+propositions.  Propositions consist of either propositional variables
+(non-reserved Lisp symbols) and compound forms (lists headed by the
+symbols *and*, *or*, *xor*, *->*, *not* and containing propositional
+variables and other compound forms).
+
+*and* and *or* are variadic, *not*, *->* and *xor* have the usual arities.
+
+For example, running
+
+#+BEGIN_SRC emacs-lisp
+(print-truth-table '(xor (-> p q) (and p (not q))))
+#+END_SRC
+
+produces
+
+#+BEGIN_SRC emacs-lisp
+ P | Q | (NOT Q) | (AND P (NOT Q)) | (-> P Q) | (XOR (-> P Q) (AND P (NOT Q))) 
+ T | T |       F |               F |        T |                              T 
+ T | F |       T |               T |        F |                              T 
+ F | T |       F |               F |        T |                              T 
+ F | F |       T |               F |        T |                              T 
+#+END_SRC
+
+This program flouts proper Lisp style and should not be viewed by
+anyone. Hopefully none of my Discrete Mathematics discover this, but
+fortunately Lisp is secret alien technology none of them understand.
+
