@@ -3,10 +3,11 @@
 truth-tables is used to produce truth tables from logical
 propositions.  Propositions consist of either propositional variables
 (non-reserved Lisp symbols) and compound forms (lists headed by the
-symbols *and*, *or*, *xor*, *->*, *not* and containing propositional
-variables and other compound forms).
+symbols *and*, *or*, *xor*, *->*, , *<->*, *not* and containing
+propositional variables and other compound forms).
 
-*and* and *or* are variadic, *not*, *->* and *xor* have the usual arities.
+*and* and *or* are variadic, *not*, *->*, *<->* and *xor* have the
+usual arities.
 
 For example, running
 

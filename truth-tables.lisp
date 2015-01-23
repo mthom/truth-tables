@@ -6,7 +6,9 @@
        (macrolet ((-> (,p ,q)
 		    `(or (not ,,p) ,,q))
 		  (xor (,p ,q)
-		    `(or (and ,,p (not ,,q)) (and (not ,,p) ,,q))))
+		    `(or (and ,,p (not ,,q)) (and (not ,,p) ,,q)))
+		  (<-> (,p ,q)
+		    `(and (-> ,,p ,,q) (-> ,,q ,,p))))
 	 ,prop))))
 
 (defun make-solvers (symbols props)
@@ -20,7 +22,7 @@
 	  solvers))
 
 (defun operatorp (op)
-  (member op '(and not or xor ->)))
+  (member op '(and not or xor -> <->)))
 
 (defun tree-walk (tree fun)
   (subst-if t
