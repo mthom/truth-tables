@@ -25,6 +25,7 @@ produces
 #+END_SRC
 
 This program flouts proper Lisp style and should not be viewed by
-anyone. Hopefully none of my Discrete Mathematics discover this, but
-fortunately Lisp is secret alien technology none of them understand.
+anyone. Hopefully none of my Discrete Mathematics students discover
+this, but fortunately Lisp is secret alien technology none of them
+understand.
 
