@@ -24,7 +24,7 @@
 (defun operatorp (op)
   (member op '(and not or xor -> <->)))
 
-(defun tree-walk (tree fun)
+(defun tree-walk (fun tree)
   (subst-if t
 	    (constantly nil)
 	    tree
@@ -32,13 +32,13 @@
 
 (defun get-subforms (prop)
   (let (symbols compounds)
-    (tree-walk prop
-	       (lambda (form)
+    (tree-walk (lambda (form)
 		 (when form
 		       (cond ((and (consp form) (operatorp (first form)))
 			      (push form compounds))
 			     ((and (symbolp form) (not (operatorp form)))
-			      (push form symbols))))))
+			      (push form symbols)))))
+	       prop)
     (values (remove-duplicates (nreverse symbols) :test #'equal)
 	    (remove-duplicates compounds :test #'equal))))
 
